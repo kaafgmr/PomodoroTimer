@@ -1,40 +1,52 @@
 using Godot;
 
-public partial class TimerBehaviour : Label
+public partial class TimerBehaviour : RichTextLabel
 {
-    private int millis = 1000;
-    private int secs = 59;
-    private int mins = 15;
+	private int millis = 0;
+	private int secs = 3;
+	private int mins = 0;
+    private bool timedout;
 
-    private void UpdateTimer(int deltaTime)
-    {
-        UpdateValue(deltaTime);
-        UpdateText();
-    }
+	public override void _Ready()
+	{
+        timedout = false;
+		UpdateText();
+	}
 
-    private void UpdateValue(int deltaTime)
-    {
-        millis -= deltaTime;
+	private void UpdateTimer(int deltaTime)
+	{
+        if(timedout) return;
+		UpdateValue(deltaTime);
+		UpdateText();
+	}
 
-        if (millis > 0)  return;
+	private void UpdateValue(int deltaTime)
+	{
+		millis -= deltaTime;
 
-        millis = 1000 - deltaTime;
+		if (millis >= 0)  return;
 
-        secs -= 1;
+		millis += 1000;
 
-        if (secs > 0) return;
+		secs -= 1;
 
-        secs = 59;
+		if (secs >= 0) return;
 
-        mins -= 1;
+		secs += 59;
 
-        if(mins > 0) return;
+		mins -= 1;
 
+		if(mins >= 0) return;
+
+        timedout = true;
+        millis = 0;
+        secs = 0;
+        mins = 0;
         GD.Print("Timeout!!!");
-    }
+	}
 
-    private void UpdateText()
-    {
-        Text = mins + ":" + secs;
-    }
+	private void UpdateText()
+	{
+		Text = mins.ToString("00") + ":" + secs.ToString("00");
+	}
 }

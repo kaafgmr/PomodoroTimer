@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/StartTimerButton.cs" id="2_irt6h"]
 
 [node name="Control" type="Control"]
+custom_minimum_size = Vector2(800, 600)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,10 +14,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TimerDelta" type="Timer" parent="."]
-wait_time = 0.16
+wait_time = 0.05
 script = ExtResource("1_03mjd")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,43 +35,39 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.854902, 0.423529, 0.654902, 1)
 
-[node name="Button" type="Button" parent="ColorRect" node_paths=PackedStringArray("timerDelta")]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -142.0
-offset_top = 76.0
-offset_right = 142.0
-offset_bottom = 202.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="TimerText" type="RichTextLabel" parent="Panel/VBoxContainer"]
+texture_filter = 2
+texture_repeat = 1
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/normal_font_size = 256
+text = "15:00"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+context_menu_enabled = true
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+script = ExtResource("1_thde5")
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer" node_paths=PackedStringArray("timerDelta")]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 86
 text = "Start"
 script = ExtResource("2_irt6h")
-timerDelta = NodePath("../../TimerDelta")
-metadata/_edit_use_anchors_ = true
+timerDelta = NodePath("../../../TimerDelta")
 
-[node name="TimerText" type="Label" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -347.5
-offset_top = -274.0
-offset_right = 347.5
-offset_bottom = 96.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 271
-text = "15:00"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("1_thde5")
-
-[connection signal="TimeOutWaitTime" from="TimerDelta" to="ColorRect/TimerText" method="UpdateTimer"]
+[connection signal="TimeOutWaitTime" from="TimerDelta" to="Panel/VBoxContainer/TimerText" method="UpdateTimer"]
 [connection signal="timeout" from="TimerDelta" to="TimerDelta" method="sendWaitTimeOnTimeOut"]
