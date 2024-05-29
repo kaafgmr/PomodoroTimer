@@ -7,7 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://b68ca8b782jwx" path="res://Themes/StyleBox/Pressed.tres" id="5_v01hp"]
 
 [resource]
-Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_color = Color(1, 1, 1, 1)
 Button/styles/disabled = ExtResource("1_coeyv")
 Button/styles/focus = ExtResource("2_rkj17")
 Button/styles/hover = ExtResource("3_i8eq8")
