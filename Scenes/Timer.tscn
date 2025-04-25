@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://d23kbrodxoal1"]
+
+[ext_resource type="Theme" uid="uid://d4erwtg4mjeoi" path="res://Themes/PinkTheme.tres" id="1_gewlg"]
+[ext_resource type="PackedScene" uid="uid://dwq1318fnx2bi" path="res://Scenes/TimeInput.tscn" id="2_7wjiq"]
+[ext_resource type="Script" uid="uid://s4dmsmkrpk5q" path="res://Scripts/StartTimerButton.cs" id="2_gewlg"]
+[ext_resource type="Script" uid="uid://dr6hgiarwps6k" path="res://Scripts/TimerUpdater.cs" id="3_7wjiq"]
+
+[node name="Timer" type="Control"]
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_gewlg")
+
+[node name="Panel" type="Panel" parent="PanelContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Panel"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -31.0
+theme_override_constants/separation = 50
+
+[node name="NumberLineEdit" parent="PanelContainer/Panel/VBoxContainer" instance=ExtResource("2_7wjiq")]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/Panel/VBoxContainer" node_paths=PackedStringArray("timerDelta")]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 86
+text = "Start"
+script = ExtResource("2_gewlg")
+timerDelta = NodePath("../../TimerDelta")
+
+[node name="TimerDelta" type="Timer" parent="PanelContainer/Panel"]
+wait_time = 0.05
+script = ExtResource("3_7wjiq")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8hnyv6hp3dwg"]
+
+[ext_resource type="Theme" uid="uid://d4erwtg4mjeoi" path="res://Themes/PinkTheme.tres" id="1_nd40o"]
+[ext_resource type="Texture2D" uid="uid://bnk6ngfedecom" path="res://images/ArrowUp.png" id="2_kiaj0"]
+
+[node name="ArrowButton" type="Button"]
+texture_filter = 1
+custom_minimum_size = Vector2(50, 0)
+offset_right = 50.0
+offset_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_nd40o")
+theme_override_constants/icon_max_width = 45
+action_mode = 0
+icon = ExtResource("2_kiaj0")
+icon_alignment = 1
+expand_icon = true

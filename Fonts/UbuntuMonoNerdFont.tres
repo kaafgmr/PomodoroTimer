@@ -1,0 +1,6 @@
+[gd_resource type="SystemFont" format=3 uid="uid://bgcs44eg0lkfx"]
+
+[resource]
+font_names = PackedStringArray("UbuntuMono Nerd Font")
+font_weight = 100
+multichannel_signed_distance_field = true

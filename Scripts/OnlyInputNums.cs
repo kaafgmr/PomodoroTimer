@@ -11,7 +11,9 @@ public partial class OnlyInputNums : Node
 
     private void RemoveEachChar(string text)
     {
-        if (text.Length == 0) return;
+
+        int column = lineEdit.CaretColumn;
+        text = text.TrimPrefix("0");
 
         string numText = "";
         for (int i = 0; i < text.Length; i++)
@@ -22,7 +24,13 @@ public partial class OnlyInputNums : Node
             }
         }
 
+        if (numText == "")
+        {
+            numText = "0";
+            column = numText.Length;
+        }
+
         lineEdit.Text = numText;
-        lineEdit.CaretColumn = lineEdit.Text.Length;
+        lineEdit.CaretColumn = column;
     }
 }
