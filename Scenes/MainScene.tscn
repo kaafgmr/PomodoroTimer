@@ -1,10 +1,33 @@
-[gd_scene format=3 uid="uid://c7lbt26rfijad"]
+[gd_scene load_steps=3 format=3 uid="uid://c7lbt26rfijad"]
+
+[ext_resource type="Theme" uid="uid://d4erwtg4mjeoi" path="res://Themes/PinkTheme.tres" id="1_tr2i4"]
+[ext_resource type="PackedScene" uid="uid://d23kbrodxoal1" path="res://Scenes/Timer.tscn" id="2_nhkr4"]
 
 [node name="Control" type="Control"]
-custom_minimum_size = Vector2(800, 600)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_tr2i4")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tr2i4")
+tab_alignment = 1
+current_tab = 0
+
+[node name="WorkTimer" parent="TabContainer" instance=ExtResource("2_nhkr4")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="RestTimer" parent="TabContainer" instance=ExtResource("2_nhkr4")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
